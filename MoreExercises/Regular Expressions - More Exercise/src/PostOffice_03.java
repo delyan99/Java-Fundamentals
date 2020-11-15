@@ -34,27 +34,7 @@ public class PostOffice_03 {
 				}
 			}
 		}
-
-		
-        /*String[] thirdText = input[2].split("\\s+");
-        for (int i = 0; i < sb.length(); i++) {
- 
-            String firstLetter = String.valueOf(sb.toString().charAt(i));
-            int length = map.get(firstLetter);
- 
-            for (String word : thirdText) {
- 
-                int lengthWord = word.length();
-                String wordFirstChar = word.substring(0, 1);
-                String firstChar = String.valueOf(wordFirstChar.charAt(0));
- 
-                if (lengthWord == length && firstLetter.equals(firstChar)) {
-                    System.out.println(word);
-                }
-            }
-        }*/
-		
-		
+	
 		String[] thirdHalfWord = input[2].split("\\s+");
 		for (int l = 0; l < sb.length(); l++) {
 			String letter = String.valueOf(sb.charAt(l));
@@ -72,22 +52,10 @@ public class PostOffice_03 {
 					if (flag) {
 						break;
 					}
-
 				}
 			}
 		}
-
-		/*
-		 * for (int i = 0; i < thirdHalfWord.length; i++) { if
-		 * (Character.isUpperCase(thirdHalfWord[i].charAt(0))) { if
-		 * (sb.toString().contains(String.valueOf(thirdHalfWord[i].charAt(0)))) { String
-		 * character = String.valueOf(thirdHalfWord[i].charAt(0)); int size =
-		 * map.get(character); if(thirdHalfWord[i].length() == size) {
-		 * System.out.println(thirdHalfWord[i]); } }
-		 * 
-		 * }
-		 */
-
+		
 	}
 
 }
