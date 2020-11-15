@@ -1,0 +1,73 @@
+import java.util.Scanner;
+
+public class MorseCodeTranslator_04 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in); 
+		String[] words = scan.nextLine().split(" \\| ");
+		StringBuilder sc = new StringBuilder();
+		
+		for (int i = 0; i < words.length; i++) {
+			String[] letters =  words[i].split("\\s+");
+			for (int j = 0; j < letters.length; j++) {
+				if(letters[j] == ".-") {
+					sc.append("A");
+				}else if(letters[j] == "-...") {
+					sc.append("B");
+				}else if(letters[j] == "-.-.") {
+					sc.append("C");
+				}else if(letters[j] == "-..") {
+					sc.append("D");
+				}else if(letters[j] == ".") {
+					sc.append("E");
+				}else if(letters[j] == "..-.") {
+					sc.append("F");
+				}else if(letters[j] == "--.") {
+					sc.append("G");
+				}else if(letters[j] == "....") {
+					sc.append("H");
+				}else if(letters[j] == "..") {
+					sc.append("I");
+				}else if(letters[j].equals(".---")) {
+					sc.append("J");
+				}else if(letters[j] == "-.-") {
+					sc.append("K");
+				}else if(letters[j] == ".-..") {
+					sc.append("L");
+				}else if(letters[j] == "--") {
+					sc.append("M");
+				}else if(letters[j] == "-.") {
+					sc.append("N");
+				}else if(letters[j] == "---") {
+					sc.append("O");
+				}else if(letters[j] == ".--.") {
+					sc.append("P");
+				}else if(letters[j] == "--.-") {
+					sc.append("Q");
+				}else if(letters[j] == ".-.") {
+					sc.append("R");
+				}else if(letters[j] == "...") {
+					sc.append("S");
+				}else if(letters[j] == "-") {
+					sc.append("T");
+				}else if(letters[j] == "..-") {
+					sc.append("U");
+				}else if(letters[j] == "...-") {
+					sc.append("V");
+				}else if(letters[j] == ".--") {
+					sc.append("W");
+				}else if(letters[j] == "-..-") {
+					sc.append("X");
+				}else if(letters[j] == "-.--") {
+					sc.append("Y");
+				}else if(letters[j] == "--..") {
+					sc.append("Z");
+				}
+			}
+			sc.append(" ");
+		}
+		System.out.println(sc);
+
+	}
+
+}

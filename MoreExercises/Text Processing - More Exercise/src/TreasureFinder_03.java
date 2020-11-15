@@ -1,0 +1,65 @@
+import java.util.Scanner;
+
+public class TreasureFinder_03 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		StringBuilder sc = new StringBuilder();
+		String[] keys = scan.nextLine().split("\\s+");
+		int[] integerKeys =new int[keys.length];
+		for (int i = 0; i < integerKeys.length; i++) {
+			integerKeys[i] = Integer.parseInt(keys[i]);
+		}
+		String input = scan.nextLine();
+		while(!"find".equals(input)) {
+			String type = "";
+			String coordinates = "";
+			char[] arrayString = input.toCharArray();
+			int j = 0;
+			for (int i = 0; i < arrayString.length; i++,j++) {
+				if(j >= keys.length) {
+					j = 0;
+				}
+				sc.append((char)(arrayString[i] - integerKeys[j]));
+			}
+			int startTypeIndex = 0;
+			int endTypeIndex = 0;
+			int startCoordinatesIndex = 0;
+			int endCoordinatesIndex = 0;
+			for (int i = 0; i < sc.length(); i++) {
+				if(sc.charAt(i) =='&') {
+					startTypeIndex = i + 1;
+					break;
+				}
+			}
+			
+			for (int i = 0; i < sc.length(); i++) {
+				if(sc.charAt(i) =='&') {
+					endTypeIndex = i;
+				}
+			}
+			
+			type = sc.substring(startTypeIndex, endTypeIndex);
+			
+			for (int i = 0; i < sc.length(); i++) {
+				if(sc.charAt(i) =='<') {
+					startCoordinatesIndex = i + 1;
+					break;
+				}
+			}
+			
+			for (int i = 0; i < sc.length(); i++) {
+				if(sc.charAt(i) =='>') {
+					endCoordinatesIndex = i;
+					break;
+				}
+			}
+			coordinates = sc.substring(startCoordinatesIndex, endCoordinatesIndex);
+			System.out.println(String.format("Found %s at %s", type, coordinates));
+			sc.delete(0, sc.length());
+			input = scan.nextLine();
+		}
+
+	}
+
+}

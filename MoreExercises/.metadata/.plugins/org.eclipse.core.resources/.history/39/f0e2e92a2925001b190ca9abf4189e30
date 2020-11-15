@@ -1,0 +1,35 @@
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class WinningTicket_01 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		String regex = "[$@#^]+"; 
+		Pattern pattern = Pattern.compile(regex);
+		String[] input = scan.nextLine().split(",\\s+");
+		for (String ticket : input) {
+			if(ticket.length() > 20 || ticket.length() < 20) {
+				System.out.println("invalid ticket");
+			}else {
+				String firstHalf = ticket.substring(0, 10);
+				String secondHalf = ticket.substring(10, 20);
+				Matcher matcherFirst = pattern.matcher(firstHalf);
+				Matcher matcherSecond = pattern.matcher(secondHalf);
+				StringBuilder csFirst = new StringBuilder();
+				StringBuilder csSecond = new StringBuilder();
+				while(matcherFirst.find()) {
+					csFirst.append(matcherFirst.group());
+				}
+				
+				while(matcherSecond.find()) {
+					csSecond.append(matcherSecond.group());
+				}
+				System.out.println();
+			}
+		}
+
+	}
+
+}

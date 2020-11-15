@@ -1,0 +1,73 @@
+import java.util.Scanner;
+
+public class MorseCodeTranslator_04 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in); 
+		String[] words = scan.nextLine().split(" \\| ");
+		StringBuilder sc = new StringBuilder();
+		
+		for (int i = 0; i < words.length; i++) {
+			String[] letters =  words[i].split("\\s+");
+			for (int j = 0; j < letters.length; j++) {
+				if(letters[j].equals(".-")) {
+					sc.append("A");
+				}else if(letters[j].equals("-...")) {
+					sc.append("B");
+				}else if(letters[j].equals("-.-.")) {
+					sc.append("C");
+				}else if(letters[j].equals("-..")) {
+					sc.append("D");
+				}else if(letters[j].equals(".")) {
+					sc.append("E");
+				}else if(letters[j].equals("..-.")) {
+					sc.append("F");
+				}else if(letters[j].equals("--.")) {
+					sc.append("G");
+				}else if(letters[j].equals("....")) {
+					sc.append("H");
+				}else if(letters[j].equals("..")) {
+					sc.append("I");
+				}else if(letters[j].equals(".---")) {
+					sc.append("J");
+				}else if(letters[j].equals("-.-")) {
+					sc.append("K");
+				}else if(letters[j].equals(".-..")) {
+					sc.append("L");
+				}else if(letters[j].equals("--")) {
+					sc.append("M");
+				}else if(letters[j].equals("-.")) {
+					sc.append("N");
+				}else if(letters[j].equals("---")) {
+					sc.append("O");
+				}else if(letters[j].equals(".--.")) {
+					sc.append("P");
+				}else if(letters[j].equals("--.-")) {
+					sc.append("Q");
+				}else if(letters[j].equals(".-.")) {
+					sc.append("R");
+				}else if(letters[j].equals("...")) {
+					sc.append("S");
+				}else if(letters[j].equals("-")) {
+					sc.append("T");
+				}else if(letters[j].equals("..-")) {
+					sc.append("U");
+				}else if(letters[j].equals("...-")) {
+					sc.append("V");
+				}else if(letters[j].equals(".--")) {
+					sc.append("W");
+				}else if(letters[j].equals("-..-")) {
+					sc.append("X");
+				}else if(letters[j].equals("-.--")) {
+					sc.append("Y");
+				}else if(letters[j].equals("--..")) {
+					sc.append("Z");
+				}
+			}
+			sc.append(" ");
+		}
+		System.out.println(sc);
+
+	}
+
+}

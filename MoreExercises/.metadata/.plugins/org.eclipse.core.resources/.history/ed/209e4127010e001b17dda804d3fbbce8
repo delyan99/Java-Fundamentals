@@ -1,0 +1,55 @@
+package Teamworkprojects_04;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int countOfTeams = Integer.parseInt(scan.nextLine());
+		List<Team> teamsCreateing = new ArrayList<Team>();
+		List<Team> teamsJoining = new ArrayList<Team>();
+		for (int i = 0; i < countOfTeams; i++) {
+			String[] info = scan.nextLine().split("-");
+			String user = info[0];
+			String team = info[1];
+			Team club = new Team(team, user);
+			if (teamsCreateing.size() != 0) {
+				if (!teamsCreateing.get(0).getUser().contains(club.getUser())) {
+					if (!teamsCreateing.get(1).getTeamName().contains(club.getTeamName())) {
+						teamsCreateing.add(club);
+						System.out.printf("Team %s has been created by %s!%n", team, user);
+					} else {
+						System.out.printf("Team %s was already created%n", team);
+					}
+				} else {
+					System.out.printf("%s cannot create another team!%n", user);
+				}
+			}else {
+				System.out.printf("Team %s has been created by %s!%n", team, user);
+				teamsCreateing.add(club);
+			}
+		}
+
+		String input = scan.nextLine();
+		while (!"end of assignment".equals(input)) {
+			String[] teamJoin = input.split("->");
+			String join = teamJoin[0];
+			String teamName = teamJoin[1];
+			if (!teamsCreateing.contains(teamName)) {
+				System.out.printf("Team %s does not exist!%n", teamName);
+			} else {
+				Team team = new Team(teamName, join);
+				teamsJoining.add(team);
+				System.out.println("naunxs");
+			}
+
+			input = scan.nextLine();
+		}
+		System.out.println();
+
+	}
+
+}

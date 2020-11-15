@@ -1,0 +1,68 @@
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Ranking_01 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		Map<String, String> firstInputMap = new LinkedHashMap<>();
+		Map<String, Map<String, Integer>> secondMap = new LinkedHashMap<>();
+		String input = scan.nextLine();
+		while(!"end of contests".equals(input)) {
+			String[] command = input.split(":");
+			String contest = command[0];
+			String passwordForContest = command[1];
+			firstInputMap.putIfAbsent(contest, "");
+			String newPassword = firstInputMap.get(contest) + passwordForContest;
+			firstInputMap.put(contest, newPassword);
+			
+			input= scan.nextLine();
+		}
+		
+		String secondInput = scan.nextLine();
+		while(!"end of submissions".equals(secondInput)) {
+			String[] command = secondInput.split("=>");
+			String contest = command[0];
+			String password = command[1];
+			String username = command[2];
+			int points = Integer.parseInt(command[3]);
+			boolean flag = false;
+			for (Map.Entry<String, String> map : firstInputMap.entrySet()) {
+				if(map.getKey().contains(contest)) {
+					flag = true;
+					break;
+				}
+			}
+			if(flag) {
+				if(firstInputMap.get(contest).equals(password)){
+					secondMap.putIfAbsent(username, new LinkedHashMap<String, Integer>());
+					Map<String, Integer> m = new LinkedHashMap<String, Integer>();
+					m.putIfAbsent(contest, 0);
+					int newPoints = m.get(contest) + points;
+					m.put(contest, newPoints);
+					Map<String, Integer> currentMap = secondMap.get(username);
+					currentMap.putAll(m);
+					secondMap.put(username, currentMap);
+					
+				}
+			}
+			
+			secondInput = scan.nextLine();
+		}
+		System.out.println();
+		String user = secondMap
+		.entrySet()
+		.stream()
+		.mapToInt(p->Integer.parseInt(p.getKey()))
+		.max().toString();
+		int p = 0;
+		p = p + secondMap.get(user).get(user);
+		System.out.println(String.format("Best candidate is %s with total %d points.", user, p));
+		
+		
+		
+	}
+
+}

@@ -1,0 +1,152 @@
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class WinningTicket_01 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		String regex1 = "[@]+"; 
+		String regex2 = "[#]+"; 
+		String regex3 = "[$]+"; 
+		String regex4 = "[^]+"; 
+		Pattern pattern1 = Pattern.compile(regex1);
+		Pattern pattern2 = Pattern.compile(regex2);
+		Pattern pattern3 = Pattern.compile(regex3);
+		Pattern pattern4 = Pattern.compile(regex4);
+		String[] input = scan.nextLine().split(",\\s+");
+		for (String ticket : input) {
+			if(ticket.length() > 20 || ticket.length() < 20) {
+				System.out.println("invalid ticket");
+			}else {
+				String firstHalf = ticket.substring(0, 10);
+				String secondHalf = ticket.substring(10, 20);
+				Matcher matcherFirst1 = pattern1.matcher(firstHalf);
+				Matcher matcherFirst2 = pattern2.matcher(firstHalf);
+				Matcher matcherFirst3 = pattern3.matcher(firstHalf);
+				Matcher matcherFirst4 = pattern4.matcher(firstHalf);
+				
+				Matcher matcherSecond1 = pattern1.matcher(secondHalf);
+				Matcher matcherSecond2 = pattern2.matcher(secondHalf);
+				Matcher matcherSecond3 = pattern3.matcher(secondHalf);
+				Matcher matcherSecond4 = pattern4.matcher(secondHalf);
+				
+				StringBuilder csFirst1 = new StringBuilder();
+				StringBuilder csFirst2 = new StringBuilder();
+				StringBuilder csFirst3 = new StringBuilder();
+				StringBuilder csFirst4 = new StringBuilder();
+				
+				
+				StringBuilder csSecond1 = new StringBuilder();
+				StringBuilder csSecond2 = new StringBuilder();
+				StringBuilder csSecond3 = new StringBuilder();
+				StringBuilder csSecond4 = new StringBuilder();
+				int couter1 = 0;
+				int couter2 = 0;
+				int couter3 = 0;
+				int couter4 = 0;
+				int finalCounter = 0;
+				String firstCharacters = "";
+				String secondCharacters = "";
+				
+				while(matcherFirst1.find()) {
+					csFirst1.append(matcherFirst1.group());
+					couter1 ++;
+				}
+				while(matcherFirst2.find()) {
+					csFirst2.append(matcherFirst2.group());
+					couter2 ++;
+				}
+				while(matcherFirst3.find()) {
+					csFirst3.append(matcherFirst3.group());
+					couter3 ++;
+				}
+				while(matcherFirst4.find()) {
+					csFirst4.append(matcherFirst4.group());
+					couter4 ++;
+				}
+				finalCounter = Integer.compare(couter1, couter2);
+				finalCounter = Integer.compare(finalCounter, couter3);
+				finalCounter = Integer.compare(finalCounter, couter4);
+				
+				if(finalCounter == couter1) {
+					for (int i = 0; i < finalCounter; i++) {
+						firstCharacters += "@";
+					}
+				}else if(finalCounter == couter2) {
+					for (int i = 0; i < finalCounter; i++) {
+						firstCharacters += "#";
+					}
+				}else if(finalCounter == couter3) {
+					for (int i = 0; i < finalCounter; i++) {
+						firstCharacters += "$";
+					}
+				}else if(finalCounter == couter4) {
+					for (int i = 0; i < finalCounter; i++) {
+						firstCharacters += "^";
+					}
+				}
+				couter1 = 0;
+				couter2 = 0;
+				couter3 = 0;
+				couter4 = 0;
+				finalCounter = 0;
+				
+				while(matcherSecond1.find()) {
+					csSecond1.append(matcherSecond1.group());
+					couter1 ++;
+				}
+				while(matcherSecond2.find()) {
+					csSecond2.append(matcherSecond2.group());
+					couter2 ++;
+				}
+				while(matcherSecond3.find()) {
+					csSecond3.append(matcherSecond3.group());
+					couter3 ++;
+				}
+				while(matcherSecond4.find()) {
+					csSecond4.append(matcherSecond3.group());
+					couter4 ++;
+				}
+				
+				finalCounter = Integer.compare(couter1, couter2);
+				finalCounter = Integer.compare(finalCounter, couter3);
+				finalCounter = Integer.compare(finalCounter, couter4);
+				
+				if(finalCounter == couter1) {
+					for (int i = 0; i < finalCounter; i++) {
+						secondCharacters += "@";
+					}
+				}else if(finalCounter == couter2) {
+					for (int i = 0; i < finalCounter; i++) {
+						secondCharacters += "#";
+					}
+				}else if(finalCounter == couter3) {
+					for (int i = 0; i < finalCounter; i++) {
+						secondCharacters += "$";
+					}
+				}else if(finalCounter == couter4) {
+					for (int i = 0; i < finalCounter; i++) {
+						secondCharacters += "^";
+					}
+				}
+				
+				if(firstCharacters.length() < 6 && secondCharacters.length() < 6) {
+					System.out.println(String.format("ticket %s - no match", ticket));
+				}else if(firstCharacters.length() == 10 && secondCharacters.length() == 6 && firstCharacters.equals(secondCharacters)){
+					System.out.println(String.format("ticket %s - %s%c Jackpot!", ticket, firstCharacters.length(), firstCharacters.charAt(0)));
+				}else if(){
+					if(secondCharacters.length() > firstCharacters.length()) {
+						
+					}else {
+						secondCharacters = firstCharacters;
+					}
+					System.out.println(String.format("ticket %s - %d%c", ticket, secondCharacters.length(), secondCharacters.charAt(0)));
+				}
+				
+			}
+		}
+
+	}
+
+}
