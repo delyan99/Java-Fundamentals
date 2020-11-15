@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class MultiplyEvensbyOdds_10 {
+
+	public static void main(String[] args) {
+		Scanner scan=new Scanner(System.in);
+		String input=scan.nextLine();
+		
+
+		int result=multiplyEvensByOdds(input);
+		System.out.println(result);
+		
+
+	}
+
+	private static int multiplyEvensByOdds(String input) {
+		int evenSum=0, oddSum=0;
+		int[] array=new int[input.length()];
+		
+		for (int i = 0; i < array.length; i++) {
+			array[i]=input.charAt(array[i]);
+			if(i%2==0) {
+				evenSum+=array[i];
+			}else {
+				oddSum+=array[i];
+			}
+		}
+		
+		return evenSum*oddSum;
+	}
+
+}

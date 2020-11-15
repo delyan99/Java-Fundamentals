@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class LongestIncreasingSubsequence_04 {
+
+	public static void main(String[] args) {
+		Scanner scan=new Scanner(System.in);
+		String input=scan.nextLine();
+		String[] inputArray=input.split(" ");
+		int[] array=new int[inputArray.length];
+		for (int i = 0; i < array.length; i++) {
+			array[i]=Integer.parseInt(inputArray[i]);
+		}
+		
+		int counter=0, bestCounter=0;
+		for (int i = 0; i < array.length-1; i++) {
+			if(array[i]<array[i+1]) {
+				counter++;
+				if(bestCounter<counter) {
+					bestCounter=counter;
+				}
+			}else {
+				bestCounter=counter;
+				counter=0;
+			}
+		}
+		
+		for (int i : array) {
+			System.out.println(i);
+		}
+
+	}
+
+}

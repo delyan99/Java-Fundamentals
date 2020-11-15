@@ -1,0 +1,36 @@
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+public class StudentAcademy_07 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		Map<String, List<Double>> studentInfo = new LinkedHashMap<>();
+		int n = Integer.parseInt(scan.nextLine());
+		for (int i = 0; i < n; i++) {
+			String name = scan.nextLine();
+			double grade = Double.parseDouble(scan.nextLine());
+			studentInfo.putIfAbsent(name, new ArrayList<>());
+			List<Double> current = studentInfo.get(name);
+			int count = current.size() + 1;
+			Double sum = 0.0;
+			for (Double cr : current) {
+				sum += grade;
+				sum += cr;
+			}
+			if(count != 1) {
+				double newGrade = sum / count;
+				studentInfo.get(name).add(newGrade);
+			}else {
+				studentInfo.get(name).add(grade);
+			}
+		}
+		
+		System.out.println();
+
+	}
+
+}

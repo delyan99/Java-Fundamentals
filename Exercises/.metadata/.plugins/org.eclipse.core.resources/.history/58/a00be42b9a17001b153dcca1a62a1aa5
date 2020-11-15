@@ -1,0 +1,29 @@
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class CountCharsinaString_01 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		Map<String, Integer> letters = new LinkedHashMap<>();
+		String[] letter = scan.nextLine().split("");
+		for (int i = 0; i < letter.length; i++) {
+			if (letter[i] != "") {
+				if (!letters.containsKey(letter[i])) {
+
+					letters.put(letter[i], 1);
+
+				} else {
+					int current = letters.get(letter[i]) + 1;
+					letters.put(letter[i], current);
+				}
+			}
+		}
+		for (Map.Entry<String, Integer> l : letters.entrySet()) {
+			System.out.println(l.getKey() + " -> " + l.getValue());
+		}
+
+	}
+
+}

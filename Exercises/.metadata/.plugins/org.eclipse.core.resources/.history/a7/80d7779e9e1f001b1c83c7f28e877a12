@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class StringExplosion_07 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		String input = scan.nextLine();
+		StringBuilder sb = new StringBuilder(input);
+		
+		for (int i = 0; i < input.length() -1 ; i++) {
+			int power = 0, counter = 0;
+			if(input.charAt(i) == '>') {
+				power = Integer.parseInt("" + input.charAt(i + 1));
+				for (int j = 0; j < power; j++) {
+					if(input.charAt(i + 1) != '>') {
+						input = input.substring(0, i+1) + input.substring(i+2, input.length() -1);
+					}else {
+						
+					}
+				}
+			}
+		}
+		
+
+	}
+
+}

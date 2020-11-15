@@ -1,0 +1,56 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class BombNumbers_05 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		String[] input = scan.nextLine().split("\\s+");
+		List<Integer> numbers = new ArrayList<>();
+		for (int i = 0; i < input.length; i++) {
+			numbers.add(Integer.parseInt(input[i]));
+		}
+		String[] bombs = scan.nextLine().split("\\s+");
+		int[] bomb = new int[bombs.length];
+		for (int i = 0; i < bomb.length; i++) {
+			bomb[i] = Integer.parseInt(bombs[i]);
+		}
+		int specialNumber = bomb[0];
+		int power = bomb[1];
+
+		for (int i = 0; i < numbers.size(); i++) {
+			int firstIndex = i - power;
+			int secondIndex = i++;
+			if(numbers.get(i) == specialNumber) {
+				for (int j = 0; j < power; j++) {
+					if(firstIndex < 0) {
+						firstIndex++;
+						continue;
+					}else {
+						numbers.remove(firstIndex);
+					}
+				}
+				
+				for (int j = 0; j < power; j++) {
+					if(secondIndex <= numbers.size()) {
+						break;
+					}else {
+						numbers.remove(secondIndex);
+					}
+				}
+				
+				numbers.remove(Integer.valueOf(numbers.get(i)));
+			}
+		}
+		
+		int sum = 0;
+		for (int i = 0; i < numbers.size(); i++) {
+			sum += numbers.get(i);
+		}
+		
+		System.out.println(sum);
+
+	}
+
+}

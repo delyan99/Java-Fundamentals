@@ -1,0 +1,34 @@
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+public class CompanyUsers_08 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		Map<String, List<String>> companies = new LinkedHashMap<>();
+		String input = scan.nextLine();
+		while(!"End".equals(input)) {
+			String command[] = input.split(" -> ");
+			String companyName = command[0];
+			String id = command[1];
+			companies.putIfAbsent(companyName, new ArrayList<>());
+			companies.get(companyName).add(id);
+			
+			input = scan.nextLine();
+		}
+		
+		companies.entrySet()
+		.stream()
+		.sorted((l, r) -> l.getKey().compareTo(r.getKey()))
+		.forEach(p->{
+			System.out.println(p);
+			((List<String>) p).stream()
+			.forEach(l->System.out.print(String.format("-- ", l)));
+		});
+	}
+
+}

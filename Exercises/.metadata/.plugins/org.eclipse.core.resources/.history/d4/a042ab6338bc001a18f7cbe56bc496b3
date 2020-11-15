@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class PascalTriangle_02 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int number = Integer.parseInt(scan.nextLine());
+
+		for (int i = 1; i <= number; i++) {
+			int[] array = new int[i];
+			if (i <= 2) {
+				for (int j = 0; j < array.length; j++) {
+					array[j] = 1;
+				}
+			}
+			for (int j : array) {
+				System.out.print(j + " ");
+			}
+			System.out.println();
+		}
+
+	}
+
+}

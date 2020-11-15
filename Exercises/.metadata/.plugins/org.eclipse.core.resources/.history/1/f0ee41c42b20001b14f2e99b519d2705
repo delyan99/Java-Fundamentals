@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class LettersChangeNumbers_08 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		String[] input = scan.nextLine().split("\\s+");
+		String result = "";
+		int number = 0;
+		int finalResult = 0;
+		for (int i = 0; i < input.length; i++) {
+			char[] array = input[i].toCharArray();
+			for (int j = 0; j < array.length; j++) {
+				int beginIndex = -1;
+				if (Character.isDigit(array[j])) {
+					beginIndex = j;
+					number = Integer.parseInt(input[i].substring(beginIndex, beginIndex + 2));
+					result = input[i].substring(0, beginIndex) + input[i].substring(beginIndex + 2, array.length);
+					char firstLetter = result.charAt(0);
+					char secondLetter = result.charAt(1);
+					if(Character.isLowerCase(firstLetter)) {
+						finalResult += number * (int)(firstLetter);
+					}else {
+						finalResult += number / (firstLetter - 96);
+					}
+					if(Character.isLowerCase(secondLetter)) {
+						
+					}else {
+						
+					}
+					break;
+				}
+			}
+
+		}
+
+	}
+
+}

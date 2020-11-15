@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class EncryptSortandPrintArray_01 {
+
+	public static void main(String[] args) {
+		Scanner scan=new Scanner(System.in);
+		int number = Integer.parseInt(scan.nextLine());
+		for (int i = 0; i < number; i++) {
+			String name=scan.nextLine();
+			char[] letter=new char[name.length()];
+			for (int j = 0; j < letter.length; j++) {
+				letter[j]=name.charAt(j);
+			}
+		}
+		
+
+	}
+
+}

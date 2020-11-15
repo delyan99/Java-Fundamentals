@@ -1,0 +1,78 @@
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class NetherRealms_05 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		Map<String, Map<Integer, Double>> database = new LinkedHashMap<>();
+		String[] input = scan.nextLine().split(",\\s*");
+		List<String> demons = new ArrayList<>();
+		for (String string : input) {
+			demons.add(string);
+		}
+		String healthRegex = "[^\\d.+\\-*\\/]";
+		String damageRegex = "[+-]?[\\d*\\/]";
+		Pattern healtPattern = Pattern.compile(healthRegex);
+		Pattern damagePattern = Pattern.compile(damageRegex);
+		for (int i = 0; i < demons.size(); i++) {
+			String name = demons.get(i);
+			Matcher healthMatcher = healtPattern.matcher(healthRegex);
+			Matcher damageMatcher = damagePattern.matcher(damageRegex);
+			StringBuilder sb = new StringBuilder();
+			while (healthMatcher.find()) {
+				sb.append(healthMatcher.group());
+			}
+			String health = sb.toString();
+			Integer healthPoints = 0;
+			for (int j = 0; j < health.length(); j++) {
+				healthPoints += health.charAt(j);
+			}
+			double damagePoints = 0;
+			while (damageMatcher.find()) {
+				if (damageMatcher.group().length() != 1) {
+					if (Character.isDigit(damageMatcher.group().charAt(0))
+							|| (damageMatcher.group(1).equals("+") || damageMatcher.group(1).equals("-"))) {
+						if ((damageMatcher.group(1).equals("+"))) {
+							String substring = damageMatcher.group().substring(1, damageMatcher.group().length());
+							damagePoints += Double.parseDouble(substring);
+						}
+						if (damageMatcher.group(1).equals("-")) {
+							String substring = damageMatcher.group().substring(1, damageMatcher.group().length());
+							damagePoints -= Double.parseDouble(substring);
+						} else {
+							damagePoints += Double.parseDouble(damageMatcher.group());
+						}
+					}
+				} else if(Character.isDigit(damageMatcher.group().charAt(0))){
+					damagePoints += Double.parseDouble(damageMatcher.group());
+				}
+			}
+			while (damageMatcher.find()) {
+				if (!((Character.isDigit(damageMatcher.group().charAt(0))
+						|| (damageMatcher.group(1).equals("+") || damageMatcher.group(1).equals("-"))))) {
+					if (damageMatcher.group().equals("*")) {
+						damagePoints *= 2;
+					} else {
+						damagePoints /= 2;
+					}
+				}
+			}
+			Map<Integer, Double> currentMap = new LinkedHashMap<>();
+			currentMap.put(healthPoints, damagePoints);
+			database.put(name, currentMap);
+		}
+
+		database.entrySet().stream().sorted((l, r) -> l.getKey().compareTo(r.getKey())).forEach(p -> {
+			p.getValue().entrySet().stream().forEach(l -> System.out
+					.println(String.format("%s - %d health, %.2f damage", p.getKey(), l.getKey(), l.getValue())));
+		});
+
+	}
+
+}

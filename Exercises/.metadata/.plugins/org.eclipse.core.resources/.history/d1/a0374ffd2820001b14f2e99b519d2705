@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class LettersChangeNumbers_08 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		String[] input = scan.nextLine().split("\\s+");
+		String result = "";
+		for (int i = 0; i < input.length; i++) {
+			char[] array = input[i].toCharArray();
+			for (int j = 0; j < array.length; j++) {
+				int beginIndex = -1;
+				int endIndex = -1;
+				if(Character.isDigit(j)) {
+					beginIndex = j;
+					break;
+				}
+				
+				if(Character.isDigit(j)) {
+					endIndex = j;
+				}
+				result = input[i].substring(beginIndex, endIndex + 1);
+				System.out.println();
+			}
+			
+		}
+
+	}
+
+}

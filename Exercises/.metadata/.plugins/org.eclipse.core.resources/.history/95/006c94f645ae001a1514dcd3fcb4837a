@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Elevator_03 {
+
+	public static void main(String[] args) {
+		Scanner scan=new Scanner(System.in);
+		int people=Integer.parseInt(scan.nextLine());
+		int peoplePerCourse=Integer.parseInt(scan.nextLine());
+		if(people<=peoplePerCourse) {
+			System.out.println("All the persons fit inside in the elevator. Only one course is needed.");
+		}else {
+			int courses=people/peoplePerCourse;
+			if(people%peoplePerCourse!=0) {
+				int lastCoursePeople=people%peoplePerCourse;
+				System.out.printf("%d courses * %d people + 1 course * %d persons", courses, people, lastCoursePeople);
+			}else {
+				System.out.printf("%d courses * %d people", courses, people);
+			}
+
+		}
+	}
+
+}

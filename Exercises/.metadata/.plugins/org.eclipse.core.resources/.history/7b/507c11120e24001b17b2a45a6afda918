@@ -1,0 +1,54 @@
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Race_02 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		String[] participants  = scan.nextLine().split(", ");
+		List<String> listOfParticipants = new ArrayList<>();
+		Map<String, Integer> map = new LinkedHashMap<>();
+		for (int i = 0; i < participants.length; i++) {
+			listOfParticipants.add(participants[i]);
+		}
+		String regexName = "([A-Za-z])";
+		String regexKm = "(\\d)";
+		Pattern patternName = Pattern.compile(regexName);
+		Pattern patternKm = Pattern.compile(regexKm);
+		String input = scan.nextLine();
+		while(!"end of race".equals(input)) {
+			Matcher matcherName = patternName.matcher(input);
+			Matcher matcherKm = patternKm.matcher(input);
+			String name = "";
+			int km = 0;
+			while(matcherName.find()) {
+				name += matcherName.group(1);
+				
+			}
+			while(matcherKm.find()) {
+				km += Integer.parseInt(matcherKm.group(1));
+			}
+			if(listOfParticipants.contains(name)) {
+				map.put(matcherName.group("name"), km);
+			}
+			
+			
+			input = scan.nextLine();
+		}
+		System.out.println();
+		map
+		.entrySet()
+		.stream()
+		.sorted((l, r) -> r.getValue().compareTo(l.getValue()))
+		.forEach(p -> {
+			System.out.println(p);
+		});
+
+	}
+
+}

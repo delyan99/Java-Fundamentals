@@ -1,0 +1,19 @@
+INDEX VERSION 1.131+C:\SoftUni\Java\JavaFundamentalsMay2020\Exercises\.metadata\.plugins\org.eclipse.jdt.core
+2128754529.index
+806842319.index
+850161759.index
+4178272552.index
+2618653748.index
+2552704100.index
+1345455219.index
+1361488232.index
+2599651187.index
+674294086.index
+1134186229.index
+3081089079.index
+3885058557.index
+1900035666.index
+3878544334.index
+280173080.index
+4183666001.index
+3258719255.index

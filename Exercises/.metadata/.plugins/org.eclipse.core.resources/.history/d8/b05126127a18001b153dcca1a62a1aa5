@@ -1,0 +1,33 @@
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Courses_06 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		String input = scan.nextLine();
+		Map<String , List<String>> map = new LinkedHashMap<>();
+		while(!"end".equals(input)) {
+			String command[] = input.split(" : ");
+			map.putIfAbsent(command[0], new ArrayList<>());
+			map.get(command[0]).add(command[1]);
+			input = scan.nextLine();
+		}
+		System.out.println();
+		map
+		.entrySet()
+		.stream()
+		.sorted((l, r) -> r.getKey().compareTo(l.getKey()))
+		.forEach(p ->{
+			System.out.println(p.getKey() + ": " + p.getValue().size());
+			for (int i = 0; i < p.getValue().size(); i++) {
+				System.out.println("--" + p.getValue().get(i));
+			}
+			
+		});
+	}
+
+}

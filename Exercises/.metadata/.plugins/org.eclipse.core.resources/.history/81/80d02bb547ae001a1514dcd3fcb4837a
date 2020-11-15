@@ -1,0 +1,14 @@
+import java.util.Scanner;
+
+public class PrintPartOfASCIITable_05 {
+
+	public static void main(String[] args) {
+		Scanner scan=new Scanner(System.in);
+		char characterBegin=scan.nextLine().charAt(0);
+		char characterEnd=scan.nextLine().charAt(0);
+		for(int i=characterBegin;i<=characterEnd;i++){
+			System.out.println(i);
+		}
+	}
+
+}

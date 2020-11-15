@@ -1,0 +1,14 @@
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class CountCharsinaString_01 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		Map<Character, Integer> letters = new LinkedHashMap<>();
+		String[] leter = scan.nextLine().split("");
+		System.out.println();
+	}
+
+}

@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class RepeatString_07 {
+
+	public static void main(String[] args) {
+		Scanner scan=new Scanner(System.in);
+		String string=scan.nextLine();
+		int repeatCounter=Integer.parseInt(scan.nextLine());
+		System.out.println(returnString(string, repeatCounter));
+
+	}
+	
+	public static String returnString(String string, int repeatCounter) {
+		for (int i = 0; i < repeatCounter/2; i++) {
+			string=string+string;
+		}
+		return string;
+	}
+
+}
