@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class DisneylandJourney_01 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int costOfJourney = Integer.parseInt(scan.nextLine());
+		int numberOfMonths = Integer.parseInt(scan.nextLine());
+		double savedMoney = 0;
+		for (int i = 1; i <= numberOfMonths; i++) {
+			savedMoney += costOfJourney * 0.25;
+			if(i != 1 && i % 2 == 1) {
+				savedMoney -= savedMoney *0.16;
+			}
+			if(i % 4 == 0) {
+				savedMoney += savedMoney *0.25;
+			}
+		}
+		if(costOfJourney < savedMoney) {
+			System.out.printf("Bravo! You can go to Disneyland and you will have %.2flv. for souvenirs.", savedMoney - costOfJourney);
+		}else {
+			System.out.printf("Sorry. You need %.2flv. more.", costOfJourney - savedMoney);
+		}
+
+	}
+
+}

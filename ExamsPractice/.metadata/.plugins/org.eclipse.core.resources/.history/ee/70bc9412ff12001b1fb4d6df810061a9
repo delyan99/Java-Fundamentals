@@ -1,0 +1,82 @@
+import java.util.Iterator;
+import java.util.Scanner;
+
+public class ArcheryTournament_02 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		String[] targets = scan.nextLine().split("\\|");
+		int t[] = new int[targets.length];
+		int points = 0;
+		for (int i = 0; i < targets.length; i++) {
+			t[i] = Integer.parseInt(targets[i]);
+		}
+		int[] targetsCopy = t;
+		String input = scan.nextLine();
+		while (!"Game over".equals(input)) {
+			String[] array = input.split(" ");
+			switch (array[0]) {
+			case "Shoot":
+				String[] leftOrRight = array[1].split("@");
+				int startIndex = Integer.parseInt(leftOrRight[1]);
+				int lenght = Integer.parseInt(leftOrRight[2]);
+				if (startIndex <= t.length) {
+					switch (leftOrRight[0]) {
+
+					case "Left":
+						int curentLeft = 0;
+						int i = startIndex;
+						for (; i < lenght; i--) {
+							if (i < 0) {
+								i = t.length - 1;
+							}
+						}
+						curentLeft = i;
+						t[curentLeft] = t[curentLeft] - 5;
+						points += 5;
+						if (t[curentLeft] < 0) {
+							points -= points;
+							points = points + Math.abs(t[curentLeft]);
+							t[curentLeft] = 0;
+
+						}
+						break;
+
+					case "Right":
+						int curentRight = 0;
+						int j = startIndex;
+						for (; j < lenght; j++) {
+							if (j > t.length - 1) {
+								j = 0;
+							}
+						}
+						curentRight = j - 1;
+						t[curentRight] = t[curentRight] - 5;
+						points += 5;
+						if (t[curentRight] < 0) {
+							points -= points;
+							points = points + Math.abs(t[curentRight]);
+							t[curentRight] = 0;
+							break;
+						}
+					}
+				}
+				break;
+			case "Reverse":
+				for (int i = 0; i < targets.length; i++) {
+					t[i] = targetsCopy[(targets.length - 1) - i];
+				}
+				break;
+			}
+
+			input = scan.nextLine();
+		}
+		for (int i = 0; i < t.length; i++) {
+			System.out.print(t[i] + "-");
+		}
+		System.out.println();
+		System.out.printf("Iskren finished the archery tournament with %d!", points);
+
+	}
+
+}

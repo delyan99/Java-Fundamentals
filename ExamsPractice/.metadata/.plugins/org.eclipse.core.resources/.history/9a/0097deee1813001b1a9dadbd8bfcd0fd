@@ -1,0 +1,57 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class SchoolLibrary_03 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		String[] book = scan.nextLine().split("&");
+		List<String> books = new ArrayList<>();
+		for (int i = 0; i < book.length; i++) {
+			books.add(book[i]);
+		}
+		String input = scan.nextLine();
+		while (!"Done".equals(input)) {
+			String[] command = input.split(" \\| ");
+			switch (command[0]) {
+			case "Add Book":
+				if(!books.contains(command[1])) {
+					books.add(0, command[1]);
+				}
+				break;
+
+			case "Take Book":
+				if(books.contains(command[1])) {
+					books.remove(command[1]);
+				}
+				break;
+			case "Swap Book":
+				
+				
+				break;
+
+			case "Insert Book":
+				books.add(command[1]);
+				break;
+			case "Check Book":
+				int index = Integer.parseInt(command[1]); 
+				if(books.size() - 1 > index) {
+					books.get(index);
+				}
+				break;
+
+			}
+			
+			input = scan.nextLine();
+		}
+		for (int i = 0; i < books.size(); i++) {
+			if(i == books.size() - 1) {
+				System.out.println(books.get(i));
+			}else {
+				System.out.print(books.get(i) + ", ");
+			}
+		}
+	}
+
+}
