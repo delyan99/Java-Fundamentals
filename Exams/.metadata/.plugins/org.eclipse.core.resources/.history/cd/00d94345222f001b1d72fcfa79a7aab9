@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class SecretChat_01 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		String message = scan.nextLine();
+		String input = scan.nextLine();
+		while(!"Reveal".equals(input)) {
+			String[] tokens = input.split(":\\|:");
+			String command = tokens[0];
+			switch(command) {
+			case "InsertSpace":
+				int index = Integer.parseInt(tokens[1]);
+				message = message.substring(0, index) + " " + message.substring(index);
+				System.out.println(message);
+				break;
+			case "Reverse":
+				break;
+			case "ChangeAll":
+				break;
+			}
+			input = scan.nextLine();
+		}
+
+	}
+
+}

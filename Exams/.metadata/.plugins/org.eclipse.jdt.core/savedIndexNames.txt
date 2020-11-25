@@ -1,0 +1,3 @@
+INDEX VERSION 1.131+C:\SoftUni\Java\JavaFundamentalsMay2020\Exams\.metadata\.plugins\org.eclipse.jdt.core
+2739930078.index
+63691209.index

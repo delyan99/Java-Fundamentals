@@ -1,0 +1,77 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class NeedforSpeedIII_03 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		Map<String, Integer> mileageMap = new HashMap<>();
+		Map<String, Integer> fuelMap = new HashMap<>();
+		int n = Integer.parseInt(scan.nextLine());
+		for (int i = 0; i < n; i++) {
+			String[] cars = scan.nextLine().split("\\|");
+			String car = cars[0];
+			int mileage = Integer.parseInt(cars[1]);
+			int fuel = Integer.parseInt(cars[2]);
+			mileageMap.put(car, mileage);
+			fuelMap.put(car, fuel);
+		}
+		
+		String input =scan.nextLine();
+		while(!"Stop".equals(input)) {
+			String[] tokens = input.split(" : ");
+			String command = tokens[0];
+			String car = tokens[1];
+			switch(command) {
+			case "Drive":
+				int distance = Integer.parseInt(tokens[2]);
+				int fuelForDrive = Integer.parseInt(tokens[3]);
+				int currentMileage = mileageMap.get(car);
+				int currentFuel = fuelMap.get(car);
+				if(currentFuel > fuelForDrive) {
+					int newMileage = currentMileage + distance;
+					int newFuel = currentFuel - fuelForDrive;
+					mileageMap.put(car, newMileage);
+					fuelMap.put(car, newFuel);
+					System.out.println(String.format("%s driven for %d kilometers. %d liters of fuel consumed.", car, distance, fuelForDrive));
+				}else {
+					System.out.println("Not enough fuel to make that ride");
+				}
+				if(mileageMap.get(car) > 100000) {
+					System.out.println(String.format("Time to sell the %s!", car));
+					mileageMap.remove(car);
+					fuelMap.remove(car);
+				}
+				
+				break;
+			case "Refuel":
+				int fuelForRefuel = Integer.parseInt(tokens[2]);
+				int currentFuelToRefuel = fuelMap.get(car);
+				int newFuelToRefuel = fuelForRefuel + currentFuelToRefuel;
+				if(newFuelToRefuel > 75) {
+					newFuelToRefuel = 75;
+				}
+				System.out.println(String.format("%s refueled with %d liters", car, newFuelToRefuel));
+				fuelMap.put(car, newFuelToRefuel);
+				break;
+			case "Revert":
+				int kilometers = Integer.parseInt(tokens[2]);
+				int currentKilometers = mileageMap.get(car);
+				int newKilometers = currentKilometers - kilometers;
+				if(newKilometers < 10000) {
+					newKilometers = 10000;
+					mileageMap.put(car, newKilometers);
+				}else {
+					mileageMap.put(car, newKilometers);
+					System.out.println(String.format("%s mileage decreased by %d kilometers", car, kilometers));
+				}
+				break;
+			}
+			
+			input = scan.nextLine();
+		}
+
+	}
+
+}

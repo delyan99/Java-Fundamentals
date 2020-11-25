@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class MirrorWords_02 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		String input = scan.nextLine();
+		String regex = "([#@])(?<firstWord>[A-Za-z]{3,})\\1([#@])(?<seconWord>[A-Za-z]{3,})\\1";
+		Pattern pattern = Pattern.compile(regex);
+		int counter = 0;
+		Matcher matcher = pattern.matcher(input);
+		List<String> mirrorWords = new ArrayList<>();
+		while(matcher.find()) {
+			counter++;
+			String firstWord = matcher.group("firstWord");
+			StringBuilder sb = new StringBuilder(matcher.group("seconWord"));
+			String secondWord = sb.reverse().toString();
+			if(firstWord.equals(secondWord)) {
+				mirrorWords.add(firstWord + " <=> " + secondWord);
+			}
+		}
+		System.out.println(String.format("%d word pairs found!", counter));
+		System.out.println("The mirror words are:");
+		for (int i = 0; i < mirrorWords.size(); i++) {
+			if(i == mirrorWords.size() - 1) {
+				System.out.print(mirrorWords.get(i));
+			}else {
+				System.out.print(mirrorWords.get(i) + ", ");
+			}
+		}
+	}
+
+}
